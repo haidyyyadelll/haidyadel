@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haidy Adel — Performance Media Buyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F5F0E8;
+  --cream-2: #EDE8DF;
+  --cream-3: #E2DDD4;
+  --ink: #0E0E0E;
+  --ink-mid: #2C2C2C;
+  --ink-light: #5A5A5A;
+  --ink-faint: #9A9A9A;
+  --white: #FDFAF5;
+  --accent: #0E0E0E;
+  --rule: rgba(14,14,14,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: all 0.18s ease;
+  opacity: 0.5;
+}
+
+/* GRAIN OVERLAY */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9997;
+  opacity: 0.4;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 64px;
+  mix-blend-mode: multiply;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 48px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  text-decoration: none;
+  transition: color 0.3s;
+  font-weight: 400;
+}
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  font-weight: 500;
+}
+
+/* ═══════════════════════════════════════
+   HERO — EDITORIAL MAGAZINE LAYOUT
+═══════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0;
+  position: relative;
+  background: var(--white);
+  overflow: hidden;
+}
+
+.hero-main {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  min-height: 100vh;
+}
+
+/* LEFT — text side */
+.hero-left {
+  padding: 140px 64px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--rule);
+}
+
+.hero-issue {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hero-issue-line {
+  width: 32px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(72px, 9vw, 128px);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 48px 0 0;
+}
+
+.hero-headline em {
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+}
+
+.hero-deck {
+  margin-top: auto;
+  padding-top: 64px;
+}
+
+.hero-tagline {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--ink-light);
+  max-width: 420px;
+  margin-bottom: 40px;
+  border-left: 2px solid var(--ink);
+  padding-left: 20px;
+}
+
+.hero-tagline strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 40px;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-meta-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.hero-meta-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* RIGHT — photo side */
+.hero-right {
+  position: relative;
+  background: var(--cream-2);
+  overflow: hidden;
+}
+
+.hero-photo-area {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-photo-placeholder {
+  width: 100%;
+  height: 85%;
+  background: var(--cream-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px dashed rgba(14,14,14,0.15);
+  margin: 0 32px 0;
+}
+
+.hero-photo-placeholder svg {
+  width: 40px;
+  height: 40px;
+  opacity: 0.25;
+}
+
+.hero-right-label {
+  position: absolute;
+  top: 140px;
+  left: 28px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* SCROLL */
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hero-scroll-line {
+  width: 48px;
+  height: 1px;
+  background: var(--ink-faint);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--ink);
+  animation: scanline 2s infinite;
+}
+
+@keyframes scanline {
+  to { left: 100%; }
+}
+
+/* MARQUEE STRIP */
+.marquee-strip {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  animation: marquee 20s linear infinite;
+  gap: 0;
+}
+
+.marquee-item {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 0 40px;
+  opacity: 0.7;
+}
+
+.marquee-dot {
+  opacity: 0.3;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════
+   ABOUT
+═══════════════════════════════════ */
+#about {
+  padding: 120px 64px;
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
+  gap: 80px;
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+
+.about-label-col {
+  padding-top: 8px;
+}
+
+.section-tag {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-tag::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--ink-faint);
+}
+
+.about-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 4vw, 64px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.about-heading em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.about-body {
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--ink-light);
+  padding-top: 8px;
+}
+
+.about-body p + p { margin-top: 20px; }
+
+/* ═══════════════════════════════════
+   PLATFORMS
+═══════════════════════════════════ */
+#platforms {
+  padding: 120px 64px;
+  background: var(--cream);
+  border-top: 1px solid var(--rule);
+}
+
+.platforms-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+.platforms-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.platforms-heading em { font-style: italic; font-weight: 400; }
+
+.platforms-intro {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--ink-light);
+  align-self: end;
+}
+
+.platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule);
+}
+
+.platform-card {
+  padding: 36px 32px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-card:nth-child(3n) { border-right: none; }
+.platform-card:nth-last-child(-n+3) { border-bottom: none; }
+
+.platform-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  z-index: 0;
+}
+
+.platform-card:hover::after { transform: translateY(0); }
+
+.platform-card:hover .platform-name,
+.platform-card:hover .platform-sub,
+.platform-card:hover .platform-badge {
+  color: var(--cream);
+  border-color: rgba(245,240,232,0.3);
+  z-index: 1;
+  position: relative;
+}
+
+.platform-icon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.platform-emoji {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.platform-badge {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--rule);
+  padding: 4px 10px;
+  transition: all 0.3s;
+}
+
+.platform-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.platform-sub {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+/* ═══════════════════════════════════
+   CASE STUDIES
+═══════════════════════════════════ */
+#work {
+  padding: 120px 64px;
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+}
+
+.work-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.work-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.work-heading em { font-style: italic; font-weight: 400; }
+
+.work-note {
+  font-size: 12px;
+  color: var(--ink-faint);
+  max-width: 240px;
+  text-align: right;
+  line-height: 1.7;
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--rule);
+}
+
+.case-card {
+  background: var(--white);
+  padding: 48px;
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.35s;
+}
+
+.case-card:hover { background: var(--cream); }
+
+.case-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  margin-bottom: 32px;
+}
+
+.case-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.case-tag {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--rule);
+  padding: 3px 8px;
+}
+
+.case-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.case-desc {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.case-metrics {
+  display: flex;
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.case-metric-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  display: block;
+}
+
+.case-metric-lbl {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.case-placeholder {
+  background: var(--cream-2);
+  padding: 48px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  border: 1px dashed rgba(14,14,14,0.1);
+}
+
+.case-placeholder-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+}
+
+.case-placeholder-text {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.case-placeholder-sub {
+  font-size: 11px;
+  color: var(--ink-faint);
+  opacity: 0.6;
+  line-height: 1.6;
+  max-width: 200px;
+}
+
+/* ═══════════════════════════════════
+   CAREER
+═══════════════════════════════════ */
+#career {
+  padding: 120px 64px;
+  background: var(--ink);
+  color: var(--cream);
+  border-top: 1px solid var(--rule);
+}
+
+#career .section-tag { color: rgba(245,240,232,0.35); }
+#career .section-tag::before { background: rgba(245,240,232,0.35); }
+
+.career-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--cream);
+  margin: 20px 0 80px;
+}
+
+.career-heading em { font-style: italic; font-weight: 400; }
+
+.timeline {
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(245,240,232,0.12);
+}
+
+.timeline-item {
+  padding: 0 0 64px 48px;
+  position: relative;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-dot {
+  position: absolute;
+  left: -4px;
+  top: 8px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+}
+
+.timeline-period {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.4);
+  margin-bottom: 10px;
+}
+
+.timeline-role {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+
+.timeline-company {
+  font-size: 12px;
+  color: rgba(245,240,232,0.45);
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.timeline-desc {
+  font-size: 13px;
+  color: rgba(245,240,232,0.6);
+  line-height: 1.85;
+  max-width: 680px;
+}
+
+/* ═══════════════════════════════════
+   SKILLS
+═══════════════════════════════════ */
+#skills {
+  padding: 120px 64px;
+  background: var(--cream);
+  border-top: 1px solid var(--rule);
+}
+
+.skills-header {
+  margin-bottom: 80px;
+}
+
+.skills-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-top: 20px;
+}
+
+.skills-heading em { font-style: italic; font-weight: 400; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule);
+}
+
+.skill-group {
+  padding: 36px 32px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.skill-group:nth-child(3n) { border-right: none; }
+.skill-group:nth-last-child(-n+3) { border-bottom: none; }
+
+.skill-group-title {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.skill-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skill-list li {
+  font-size: 13px;
+  color: var(--ink-mid);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-list li::before {
+  content: '';
+  width: 16px; height: 1px;
+  background: var(--ink-faint);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════
+   CONTACT
+═══════════════════════════════════ */
+#contact {
+  padding: 120px 64px;
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.contact-left {}
+
+.contact-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 5vw, 80px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-top: 20px;
+}
+
+.contact-heading em {
+  font-style: italic;
+  font-weight: 400;
+  display: block;
+}
+
+.contact-right {}
+
+.contact-subtitle {
+  font-size: 14px;
+  color: var(--ink-light);
+  line-height: 1.85;
+  margin-bottom: 48px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 13px;
+  transition: padding-left 0.3s;
+  group: true;
+}
+
+.contact-link:hover { padding-left: 12px; }
+
+.contact-link-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-link-type {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  min-width: 72px;
+}
+
+.contact-link-arrow {
+  font-size: 18px;
+  color: var(--ink-faint);
+  transition: transform 0.3s, color 0.3s;
+}
+
+.contact-link:hover .contact-link-arrow {
+  transform: translateX(6px);
+  color: var(--ink);
+}
+
+/* FOOTER */
+footer {
+  padding: 28px 64px;
+  background: var(--ink);
+  color: rgba(245,240,232,0.4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* FADE-UP ANIMATION */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════
+   RESPONSIVE — TABLET (max 1024px)
+═══════════════════════════════════ */
+@media (max-width: 1024px) {
+  nav { padding: 20px 28px; }
+  .nav-links { display: none; }
+  .hero-main { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 100px 28px 56px; }
+  .hero-scroll { left: 28px; }
+  #about { grid-template-columns: 1fr; padding: 80px 28px; gap: 32px; }
+  #platforms { padding: 80px 28px; }
+  .platforms-header { grid-template-columns: 1fr; gap: 24px; }
+  .platforms-grid { grid-template-columns: 1fr 1fr; }
+  .platform-card:nth-child(3n) { border-right: 1px solid var(--rule); }
+  .platform-card:nth-child(2n) { border-right: none; }
+  #work { padding: 80px 28px; }
+  .cases-grid { grid-template-columns: 1fr; }
+  #career { padding: 80px 28px; }
+  #skills { padding: 80px 28px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  #contact { grid-template-columns: 1fr; padding: 80px 28px; gap: 40px; }
+  footer { padding: 20px 28px; flex-direction: column; gap: 8px; text-align: center; }
+
+  .hero-left > div[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important; flex-direction: column !important; gap: 32px !important;
+  }
+  .case-card > div[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important; flex-direction: column !important; gap: 32px !important;
+  }
+  #process { padding: 80px 28px; }
+  #process > div { grid-template-columns: 1fr !important; gap: 40px !important; }
+  #process > div > div:last-child { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ═══════════════════════════════════
+   RESPONSIVE — MOBILE (max 640px)
+═══════════════════════════════════ */
+@media (max-width: 640px) {
+  /* NAV */
+  nav { padding: 14px 20px; }
+  .nav-logo { font-size: 12px; }
+  .nav-cta { font-size: 9px; padding: 8px 12px; letter-spacing: 0.08em; }
+
+  /* HERO */
+  .hero-left { padding: 80px 20px 40px; }
+  .hero-headline { font-size: clamp(52px, 15vw, 72px) !important; margin: 20px 0 0 !important; }
+
+  /* Mobile photo — compact */
+  .hero-mobile-photo {
+    display: block !important;
+    height: 220px !important;
+    object-position: top center;
+    margin: 20px 0 24px !important;
+  }
+
+  /* Hero content → stack */
+  .hero-left > div[style*="grid-template-columns"] {
+    display: flex !important; flex-direction: column !important; gap: 20px !important;
+  }
+
+  /* Power statement compact */
+  .hero-left div[style*="background:var(--ink)"] {
+    font-size: 12px !important;
+    padding: 14px 16px !important;
+  }
+
+  .hero-tagline { font-size: 13px !important; margin-bottom: 0 !important; }
+  .hero-meta { gap: 16px !important; flex-wrap: wrap; }
+  .hero-meta-num { font-size: 22px !important; }
+  .hero-meta-label { font-size: 8px !important; }
+  .hero-scroll { display: none; }
+
+  /* MARQUEE */
+  .marquee-item { font-size: 9px; padding: 0 20px; }
+
+  /* ALL SECTIONS — tight padding */
+  #about  { padding: 48px 20px; gap: 20px; }
+  #platforms { padding: 48px 20px; }
+  #work   { padding: 48px 20px; }
+  #process { padding: 48px 20px; }
+  #career { padding: 48px 20px; }
+  #skills { padding: 48px 20px; }
+  #contact { padding: 48px 20px; gap: 28px; }
+
+  /* ABOUT */
+  #about { grid-template-columns: 1fr; }
+  .about-heading { font-size: clamp(28px, 7vw, 40px); }
+  .about-body { font-size: 13px; }
+  .about-body p + p { margin-top: 12px; }
+
+  /* PLATFORMS — 2 columns on mobile */
+  .platforms-header { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px !important; }
+  .platforms-heading { font-size: clamp(28px, 7vw, 40px) !important; margin-top: 12px !important; }
+  .platforms-grid { grid-template-columns: 1fr 1fr !important; }
+  .platform-card { padding: 20px 16px !important; }
+  .platform-card:nth-child(3n) { border-right: 1px solid var(--rule) !important; }
+  .platform-card:nth-child(2n) { border-right: none !important; }
+  .platform-name { font-size: 15px !important; }
+  .platform-emoji { font-size: 22px !important; }
+
+  /* WORK */
+  .work-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 32px !important; padding-bottom: 24px !important; }
+  .work-heading { font-size: clamp(28px, 7vw, 40px) !important; }
+  .work-note { display: none; }
+  .cases-grid { grid-template-columns: 1fr; gap: 2px; }
+  .case-card { padding: 24px 20px !important; }
+  .case-card > div[style*="grid-template-columns"] {
+    display: flex !important; flex-direction: column !important; gap: 20px !important;
+  }
+  .case-title { font-size: 20px !important; }
+  .case-desc { font-size: 12px !important; margin-bottom: 20px !important; }
+  .case-num { margin-bottom: 16px !important; }
+
+  /* Screenshots → single col */
+  .case-card div[style*="repeat(3"] { grid-template-columns: 1fr 1fr !important; }
+  .case-card div[style*="repeat(2"] { grid-template-columns: 1fr !important; }
+  .case-card img[style*="height:180px"] { height: 130px !important; }
+  .case-card img[style*="height:220px"] { height: 160px !important; }
+
+  /* PROCESS — compact */
+  #process > div { grid-template-columns: 1fr !important; gap: 24px !important; }
+  #process > div > div:last-child {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2px !important;
+  }
+  #process div[style*="padding:32px 28px"] { padding: 20px 16px !important; }
+  #process div[style*="font-size:48px"] { font-size: 32px !important; margin-bottom: 12px !important; }
+
+  /* CAREER */
+  .career-heading { font-size: clamp(28px, 7vw, 40px); margin-bottom: 36px; }
+  .timeline-role { font-size: 20px; }
+  .timeline-item { padding-left: 28px; padding-bottom: 32px; }
+  .timeline-desc { font-size: 12px; }
+
+  /* SKILLS — 2 cols compact */
+  .skills-grid { grid-template-columns: 1fr 1fr !important; }
+  .skills-heading { font-size: clamp(28px, 7vw, 40px) !important; }
+  .skill-group { padding: 20px 16px !important; }
+  .skill-group-title { font-size: 9px !important; margin-bottom: 14px !important; }
+  .skill-list li { font-size: 12px !important; }
+
+  /* CONTACT */
+  #contact { grid-template-columns: 1fr; }
+  .contact-heading { font-size: clamp(36px, 9vw, 52px); }
+  .contact-subtitle { font-size: 13px; margin-bottom: 24px; }
+  .contact-link { font-size: 12px; }
+
+  /* FOOTER */
+  footer { padding: 14px 20px; flex-direction: column; gap: 4px; text-align: center; font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Haidy Adel</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:haidyyadell26@gmail.com" class="nav-cta" style="background:var(--ink);color:var(--cream);padding:10px 20px;border-bottom:none;">Book a Call →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-main">
+
+    <div class="hero-left">
+      <div class="hero-issue">
+        <span class="hero-issue-line"></span>
+        Performance Media · Gulf Market
+      </div>
+
+      <!-- NAME — full width on top -->
+      <h1 class="hero-headline" style="margin: 32px 0 0;">
+        Haidy<br>
+        <em>Adel.</em>
+      </h1>
+
+      <!-- PHOTO — mobile only, shows below name -->
+      <img src="https://i.ibb.co/C36vzZMq/IMG-3369.jpg" alt="Haidy Adel"
+        class="hero-mobile-photo"
+        style="display:none; width:100%; height:200px; object-fit:cover; object-position:center 20%; margin:20px 0 24px;">
+
+      <!-- CONTENT — full width below -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+
+        <!-- LEFT: power statement + tagline -->
+        <div>
+          <div style="font-size:13px; font-weight:500; line-height:1.6; margin-bottom:24px; padding:16px 20px; background:var(--ink); color:var(--cream);">
+            Scaled Saudi brands to <strong style="color:#E2C47A;">SAR 2M+</strong> in combined revenue — with ROAS reaching <strong style="color:#E2C47A;">7x+</strong> across Meta, Snapchat & TikTok.
+          </div>
+          <p class="hero-tagline" style="margin-bottom:0;">
+            Performance Media Buyer with <strong>3+ years</strong> scaling paid campaigns across Meta, Google, TikTok & Snapchat — with deep expertise in the <strong>Gulf market</strong> and experience leading a full media buying team.
+          </p>
+        </div>
+
+        <!-- RIGHT: stats + CTAs -->
+        <div>
+          <div class="hero-meta" style="margin-bottom:32px;">
+            <div class="hero-meta-item">
+              <span class="hero-meta-num">3+</span>
+              <span class="hero-meta-label">Years</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-num">4</span>
+              <span class="hero-meta-label">Platforms</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-num">7x</span>
+              <span class="hero-meta-label">Peak ROAS</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-num">2M+</span>
+              <span class="hero-meta-label">SAR Revenue</span>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <a href="mailto:haidyyadell26@gmail.com?subject=Strategy Call Request"
+              style="background:var(--ink); color:var(--cream); text-decoration:none; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; font-weight:500; padding:16px 28px; text-align:center; transition:opacity 0.3s; display:block;"
+              onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+              Book a Free Strategy Call
+            </a>
+            <a href="#work"
+              style="border:1px solid var(--rule); color:var(--ink); text-decoration:none; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; padding:16px 28px; text-align:center; transition:border-color 0.3s; display:block;"
+              onmouseover="this.style.borderColor='var(--ink)'" onmouseout="this.style.borderColor='var(--rule)'">
+              View My Work
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <span class="hero-right-label">Media Buyer · Egypt</span>
+      <div class="hero-photo-area">
+        <img src="https://i.ibb.co/C36vzZMq/IMG-3369.jpg" style="width:100%;height:100%;object-fit:cover;object-position:top center;" alt="Haidy Adel">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-item">Meta Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Google Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">TikTok Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Snapchat Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">ROAS Optimization</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Gulf Market</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">CPA Reduction</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">A/B Testing</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Team Leadership</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Conversion Tracking</span><span class="marquee-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Meta Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Google Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">TikTok Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Snapchat Ads</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">ROAS Optimization</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Gulf Market</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">CPA Reduction</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">A/B Testing</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Team Leadership</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Conversion Tracking</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-label-col fade-up">
+    <div class="section-tag">01 — About</div>
+  </div>
+  <div class="fade-up">
+    <h2 class="about-heading">Driving Growth<br><em>at Scale</em></h2>
+  </div>
+  <div class="about-body fade-up">
+    <p>Results-driven Performance Media Buyer with 3+ years of hands-on experience planning, optimizing, and scaling digital advertising campaigns — with a sharp focus on the Gulf market and its consumer behavior.</p>
+    <p>Currently serving as Team Leader at Tjarti Platform, overseeing a full media buying department across Meta, Google, TikTok & Snapchat — mentoring junior buyers, reviewing campaign strategies, and driving ROAS across multiple accounts.</p>
+    <p>Passionate about data, creative performance, and finding the exact insight that turns a campaign from good to great.</p>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section id="platforms">
+  <div class="platforms-header">
+    <div class="fade-up">
+      <div class="section-tag">02 — Platforms</div>
+      <h2 class="platforms-heading" style="margin-top:20px">Tools of<br><em>the Trade</em></h2>
+    </div>
+    <p class="platforms-intro fade-up">Deep expertise across every major paid media platform — from creative testing to bid optimization and conversion tracking at scale.</p>
+  </div>
+
+  <div class="platforms-grid">
+    <div class="platform-card fade-up">
+      <div class="platform-icon-row">
+        <span class="platform-emoji">📘</span>
+        <span class="platform-badge">Expert</span>
+      </div>
+      <span class="platform-name">Meta Ads</span>
+      <span class="platform-sub">Facebook · Instagram · Reels</span>
+    </div>
+    <div class="platform-card fade-up">
+      <div class="platform-icon-row">
+        <span class="platform-emoji">🎵</span>
+        <span class="platform-badge">Expert</span>
+      </div>
+      <span class="platform-name">TikTok Ads</span>
+      <span class="platform-sub">Short-Form · Performance</span>
+    </div>
+    <div class="platform-card fade-up">
+      <div class="platform-icon-row">
+        <span class="platform-emoji">👻</span>
+        <span class="platform-badge">Expert</span>
+      </div>
+      <span class="platform-name">Snapchat Ads</span>
+      <span class="platform-sub">GCC · Lead Generation</span>
+    </div>
+    <div class="platform-card fade-up">
+      <div class="platform-icon-row">
+        <span class="platform-emoji">🔍</span>
+        <span class="platform-badge">Expert</span>
+      </div>
+      <span class="platform-name">Google Ads</span>
+      <span class="platform-sub">Search · Display · YouTube</span>
+    </div>
+    <div class="platform-card fade-up">
+      <div class="platform-icon-row">
+        <span class="platform-emoji">📊</span>
+        <span class="platform-badge">Advanced</span>
+      </div>
+      <span class="platform-name">Analytics</span>
+      <span class="platform-sub">GA4 · Meta Pixel · UTM</span>
+    </div>
+    <div class="platform-card fade-up">
+      <div class="platform-icon-row">
+        <span class="platform-emoji">🧪</span>
+        <span class="platform-badge">Advanced</span>
+      </div>
+      <span class="platform-name">A/B Testing</span>
+      <span class="platform-sub">Creative · Copy · Audience</span>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="work-header">
+    <div class="fade-up">
+      <div class="section-tag">03 — Case Studies</div>
+      <h2 class="work-heading" style="margin-top:20px">Performance<br><em>at Scale</em></h2>
+    </div>
+    <p class="work-note fade-up">Real results from real campaigns. Details & screenshots available upon request.</p>
+  </div>
+
+  <div class="cases-grid">
+
+    <!-- CASE STUDY 01 — Accessories & Seasonal Products -->
+    <div class="case-card fade-up" style="grid-column: span 2;">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+        <div>
+          <div class="case-num">01</div>
+          <div class="case-tags">
+            <span class="case-tag">E-Commerce</span>
+            <span class="case-tag">Saudi Arabia</span>
+            <span class="case-tag">Accessories · Gifts</span>
+            <span class="case-tag">Snapchat · Meta</span>
+          </div>
+          <h3 class="case-title">Saudi Accessories Brand —<br>SAR 1.25M+ Annual Revenue</h3>
+          <p class="case-desc">
+            Managed full paid media strategy for a Saudi brand specializing in accessories, mugs, and seasonal agendas — scaling from consistent monthly performance to record-breaking quarters.
+            <br><br>
+            Achieved sustained ROAS above 7x across two consecutive quarters, maintaining efficiency while growing spend. Snapchat was a primary driver with strong purchase ROAS throughout — proving that the right platform-audience fit compounds over time.
+          </p>
+          <div style="font-size:12px; color:var(--ink-faint); font-style:italic; margin-top:8px; line-height:1.7;">
+            Q4 2025: SAR 590K+ · 7.65x ROAS on Snapchat &nbsp;|&nbsp; Q1 2026: SAR 600K+ · 7.54x ROAS
+          </div>
+        </div>
+        <div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule); margin-bottom: 2px;">
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">SAR 1.58M+</span>
+              <span class="case-metric-lbl">Total Sales — Full Year 2025</span>
+            </div>
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">7x+</span>
+              <span class="case-metric-lbl">ROAS — Q4 2025 & Q1 2026</span>
+            </div>
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">6,409</span>
+              <span class="case-metric-lbl">Orders — Full Year 2025</span>
+            </div>
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">4.3M+</span>
+              <span class="case-metric-lbl">Paid Impressions (Q4 Snap)</span>
+            </div>
+          </div>
+          <div style="border:1px solid var(--rule); background:var(--cream-2);">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--rule);">
+              <div style="padding:14px 16px; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint); border-right:1px solid var(--rule);">Period</div>
+              <div style="padding:14px 16px; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint); border-right:1px solid var(--rule);">Revenue</div>
+              <div style="padding:14px 16px; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint);">ROAS</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--rule);">
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink-mid); border-right:1px solid var(--rule);">Full Year 2025</div>
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink); font-weight:500; border-right:1px solid var(--rule);">SAR 1.58M+</div>
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink-mid);">~5x avg</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--rule);">
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink-mid); border-right:1px solid var(--rule);">Q4 2025</div>
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink); font-weight:500; border-right:1px solid var(--rule);">SAR 571K+</div>
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink); font-weight:600;">7.65x 🔥</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr;">
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink-mid); border-right:1px solid var(--rule);">Q1 2026</div>
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink); font-weight:500; border-right:1px solid var(--rule);">SAR 599K+</div>
+              <div style="padding:14px 16px; font-size:12px; color:var(--ink); font-weight:600;">7.54x 🔥</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           📸 صور CASE STUDY 01 — ضيفي الصور هنا
+           استبدلي كل src="YOUR_IMAGE_LINK_HERE" بلينك الصورة من imgbb
+           ============================================ -->
+      <div style="margin-top:32px; border-top:1px solid var(--rule); padding-top:32px;">
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:16px;">Campaign Screenshots</div>
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/4RbFZ9MH/Whats-App-Image-2026-05-02-at-16-43-19.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/4RbFZ9MH/Whats-App-Image-2026-05-02-at-16-43-19.jpg" alt="Full Year 2025 Sales"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">إجمالي مبيعات 2025 — SAR 1.58M+</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/RTNXC9HM/Whats-App-Image-2026-05-02-at-16-49-54.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/RTNXC9HM/Whats-App-Image-2026-05-02-at-16-49-54.jpg" alt="Q4 2025 Results"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Q4 2025 — SAR 571K+ · ROAS 7.65x</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/b5Khfd9n/Whats-App-Image-2026-05-02-at-16-41-57.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/b5Khfd9n/Whats-App-Image-2026-05-02-at-16-41-57.jpg" alt="Q1 2026 Results"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Q1 2026 — SAR 599K+ · ROAS 7.54x</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/0yQcSxNN/Whats-App-Image-2026-05-02-at-16-40-51.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/0yQcSxNN/Whats-App-Image-2026-05-02-at-16-40-51.jpg" alt="Snapchat ROAS 7.65x"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Snapchat — Purchase ROAS 7.65x · 514 Purchases</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/nM7CRT3f/Whats-App-Image-2026-05-02-at-16-40-56.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/nM7CRT3f/Whats-App-Image-2026-05-02-at-16-40-56.jpg" alt="Snapchat Q1 2026"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Snapchat Q1 2026 — ROAS 7.54x · 371 Purchases</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/qLzbkCLD/Whats-App-Image-2026-05-02-at-16-40-57.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/qLzbkCLD/Whats-App-Image-2026-05-02-at-16-40-57.jpg" alt="Snapchat Overview"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Snapchat — Campaign Performance Overview</span>
+          </div>
+
+        </div>
+      </div>
+      <!-- ============ نهاية صور CASE 01 ============ -->
+
+    </div>
+
+    <!-- CASE STUDY 02 — Saudi Tissue -->
+    <div class="case-card fade-up" style="grid-column: span 2;">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+        <div>
+          <div class="case-num">02</div>
+          <div class="case-tags">
+            <span class="case-tag">E-Commerce</span>
+            <span class="case-tag">Saudi Arabia</span>
+            <span class="case-tag">FMCG</span>
+            <span class="case-tag">Meta · Snap · TikTok</span>
+          </div>
+          <h3 class="case-title">Saudi Tissue — Zero to<br>Quarter Million in Month One</h3>
+          <p class="case-desc">
+            Took a Saudi tissue brand from zero digital presence to a fully running paid media operation across Meta, Snapchat, and TikTok. Built the full campaign architecture from scratch — strategy, audience targeting, creative direction, and retargeting flows via email and WhatsApp for abandoned carts.
+            <br><br>
+            Focused creative strategy on UGC-style videos to deliver real product value and authentic social proof — driving trust and conversions in a competitive FMCG market.
+          </p>
+          <div style="font-size:12px; color:var(--ink-faint); font-style:italic; margin-top:8px;">
+            Month 2, Week 1 alone: 429+ orders — built on the momentum of Month 1's foundation.
+          </div>
+        </div>
+        <div>
+          <div class="case-metrics" style="display:grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule); margin-bottom: 2px; border-top: none; padding-top: 0;">
+            <div class="case-metric" style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">SAR 300K+</span>
+              <span class="case-metric-lbl">Total Sales — Month 1</span>
+            </div>
+            <div class="case-metric" style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">1,532</span>
+              <span class="case-metric-lbl">Orders — Month 1</span>
+            </div>
+            <div class="case-metric" style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">4x</span>
+              <span class="case-metric-lbl">ROAS — Launch Month</span>
+            </div>
+            <div class="case-metric" style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">429+</span>
+              <span class="case-metric-lbl">Orders in Week 1, Month 2</span>
+            </div>
+          </div>
+          <div style="background:var(--cream-2); padding:20px 24px; border:1px solid var(--rule); font-size:11px; color:var(--ink-faint); line-height:1.7;">
+            <strong style="color:var(--ink-light); font-size:10px; letter-spacing:0.15em; text-transform:uppercase; display:block; margin-bottom:8px;">What drove the results</strong>
+            UGC-first creative strategy · Full-funnel targeting · Abandoned cart recovery via Email & WhatsApp · Multi-platform scaling (Meta, Snap, TikTok)
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px; border-top:1px solid var(--rule); padding-top:32px;">
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:16px;">Campaign Screenshots</div>
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:16px;">
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/JW631MYZ/image.png" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/JW631MYZ/image.png" alt="Saudi Tissue Month 1 Results"
+                style="width:100%; height:220px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Month 1 — 1,532 Orders · SAR 300K+ Sales</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/GhDXcc1/image.png" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/GhDXcc1/image.png" alt="Saudi Tissue Month 2 Week 1"
+                style="width:100%; height:220px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Month 2, Week 1 — 429+ Orders في أول أسبوع</span>
+          </div>
+
+        </div>
+      </div>
+      <!-- ============ نهاية صور CASE 02 ============ -->
+
+    </div>
+
+    <!-- CASE STUDY 03 — Delivery App KSA -->
+    <div class="case-card fade-up" style="grid-column: span 2;">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;">
+        <div>
+          <div class="case-num">03</div>
+          <div class="case-tags">
+            <span class="case-tag">Mobile App</span>
+            <span class="case-tag">Saudi Arabia</span>
+            <span class="case-tag">Delivery & Ride-hailing</span>
+            <span class="case-tag">Meta · App Campaigns</span>
+          </div>
+          <h3 class="case-title">Saudi Delivery App —<br>6,200+ Installs in 3 Months</h3>
+          <p class="case-desc">
+            Launched and scaled paid user acquisition for a Saudi delivery & ride-hailing app — targeting both riders (drivers) and consumers simultaneously across Meta campaigns.
+            <br><br>
+            Built a dual-objective campaign structure: app installs for consumer acquisition and driver sign-up conversions for supply-side growth. Achieved over 6,200 paid installs and 2,134 driver sign-ups in the first three months, with a cost-per-install as low as SAR 1.63 on Android.
+          </p>
+          <div style="font-size:12px; color:var(--ink-faint); font-style:italic; margin-top:8px; line-height:1.7;">
+            Scaled to 21 active campaigns · 756K+ total reach · SAR 4.55 avg. cost per install
+          </div>
+        </div>
+        <div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--rule); margin-bottom: 2px;">
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">6,228</span>
+              <span class="case-metric-lbl">Paid App Installs — 3 Months</span>
+            </div>
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">2,134</span>
+              <span class="case-metric-lbl">Driver Sign-ups</span>
+            </div>
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">SAR 1.63</span>
+              <span class="case-metric-lbl">Lowest CPI (Android)</span>
+            </div>
+            <div style="background:var(--white); padding:28px;">
+              <span class="case-metric-num">1M+</span>
+              <span class="case-metric-lbl">Paid Impressions</span>
+            </div>
+          </div>
+          <div style="border:1px solid var(--rule); background:var(--cream-2);">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--rule);">
+              <div style="padding:12px 16px; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint); border-right:1px solid var(--rule);">Platform</div>
+              <div style="padding:12px 16px; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint); border-right:1px solid var(--rule);">Installs</div>
+              <div style="padding:12px 16px; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-faint);">Avg. CPI</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--rule);">
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink-mid); border-right:1px solid var(--rule);">Android</div>
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink); font-weight:500; border-right:1px solid var(--rule);">3,062</div>
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink); font-weight:600;">SAR 1.63 🔥</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--rule);">
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink-mid); border-right:1px solid var(--rule);">iOS</div>
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink); font-weight:500; border-right:1px solid var(--rule);">221</div>
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink-mid);">SAR 7.88</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr;">
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink-mid); border-right:1px solid var(--rule);">Overall</div>
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink); font-weight:500; border-right:1px solid var(--rule);">5,705</div>
+              <div style="padding:12px 16px; font-size:12px; color:var(--ink-mid);">SAR 4.55</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:32px; border-top:1px solid var(--rule); padding-top:32px;">
+        <div style="font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:16px;">Campaign Screenshots</div>
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/B2vcZPSQ/Whats-App-Image-2026-05-04-at-02-33-47-1.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/B2vcZPSQ/Whats-App-Image-2026-05-04-at-02-33-47-1.jpg" alt="App Install Campaigns Overview"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">Meta Campaigns — 5,705 Total App Installs</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/JwmJHVY3/Whats-App-Image-2026-05-04-at-02-33-47.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/JwmJHVY3/Whats-App-Image-2026-05-04-at-02-33-47.jpg" alt="App Installs Performance"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">832 Installs · SAR 4.55 Avg. CPI</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="https://i.ibb.co/tPMbZrYm/Whats-App-Image-2026-05-04-at-02-33-45.jpg" target="_blank" style="display:block; overflow:hidden; border:1px solid var(--rule);">
+              <img src="https://i.ibb.co/tPMbZrYm/Whats-App-Image-2026-05-04-at-02-33-45.jpg" alt="Driver Signups & KPIs"
+                style="width:100%; height:180px; object-fit:cover; object-position:top; display:block; transition:transform 0.3s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+            </a>
+            <span style="font-size:10px; color:var(--ink-faint); letter-spacing:0.08em;">6,228 Paid Installs · 2,134 Driver Sign-ups</span>
+          </div>
+
+        </div>
+      </div>
+      <!-- ============ نهاية صور CASE 03 ============ -->
+
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS SECTION -->
+<section id="process" style="padding:120px 64px; background:var(--cream); border-top:1px solid var(--rule);">
+  <div style="display:grid; grid-template-columns: 200px 1fr; gap:80px; align-items:start;">
+    <div class="fade-up">
+      <div class="section-tag">04 — Process</div>
+      <h2 style="font-family:'Playfair Display',serif; font-size:clamp(40px,4vw,56px); font-weight:700; line-height:1.05; margin-top:20px;">How I<br><em style="font-style:italic;font-weight:400;">Work</em></h2>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:2px; background:var(--rule);" class="fade-up">
+
+      <div style="background:var(--white); padding:32px 28px;">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:900; color:var(--rule); line-height:1; margin-bottom:20px;">01</div>
+        <div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px; letter-spacing:0.02em;">Audit & Research</div>
+        <div style="font-size:12px; color:var(--ink-light); line-height:1.8;">Deep dive into the account, market, competitors, and audience behavior — before touching any budget.</div>
+      </div>
+
+      <div style="background:var(--white); padding:32px 28px;">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:900; color:var(--rule); line-height:1; margin-bottom:20px;">02</div>
+        <div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px; letter-spacing:0.02em;">Strategy & Structure</div>
+        <div style="font-size:12px; color:var(--ink-light); line-height:1.8;">Build the full campaign architecture — funnel stages, audience segments, bidding strategy, and creative direction.</div>
+      </div>
+
+      <div style="background:var(--white); padding:32px 28px;">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:900; color:var(--rule); line-height:1; margin-bottom:20px;">03</div>
+        <div style="font-size:13px; font-weight:600; color:var(--ink); margin-bottom:12px; letter-spacing:0.02em;">Launch & Optimize</div>
+        <div style="font-size:12px; color:var(--ink-light); line-height:1.8;">A/B test creatives, audiences, and placements. Daily monitoring with data-driven decisions to improve CPA & ROAS.</div>
+      </div>
+
+      <div style="background:var(--ink); padding:32px 28px;">
+        <div style="font-family:'Playfair Display',serif; font-size:48px; font-weight:900; color:rgba(255,255,255,0.1); line-height:1; margin-bottom:20px;">04</div>
+        <div style="font-size:13px; font-weight:600; color:var(--cream); margin-bottom:12px; letter-spacing:0.02em;">Scale & Report</div>
+        <div style="font-size:12px; color:rgba(245,240,232,0.6); line-height:1.8;">Scale winning campaigns, cut losers fast, and deliver clear performance reports with actionable insights.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+  <div class="section-tag fade-up">05 — Career</div>
+  <h2 class="career-heading fade-up">The <em>Journey</em></h2>
+
+  <div class="timeline">
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">March 2025 — Present</div>
+      <div class="timeline-role">Team Leader — Media Buying</div>
+      <div class="timeline-company">Tjarti Platform · Gulf Market</div>
+      <div class="timeline-desc">Led a full media buying department across Meta, Google, TikTok & Snapchat. Developed scalable strategies for Gulf market seasonality, mentored junior buyers, and drove ROAS improvement across all team accounts. Coordinated between creative, content, and analytics teams.</div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">December 2024 — Present</div>
+      <div class="timeline-role">Media Buyer</div>
+      <div class="timeline-company">Run Agency · Gulf Market</div>
+      <div class="timeline-desc">Strategize, launch, and manage multi-platform campaigns for Gulf-based clients. Deliver data-driven performance reports, optimize for ROAS & CPA reduction, and conduct market research to guide audience segmentation and creative direction.</div>
+    </div>
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">November 2023 — March 2025</div>
+      <div class="timeline-role">Media Buyer</div>
+      <div class="timeline-company">Tjarti Platform · Gulf Market</div>
+      <div class="timeline-desc">Launched and optimized targeted campaigns focusing on customer acquisition across the Gulf region. Managed budgets, reduced CPC & CPA, and conducted A/B testing on creatives, copy, and audience segments to improve conversion rates.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-header fade-up">
+    <div class="section-tag">06 — Skills</div>
+    <h2 class="skills-heading">The <em>Toolkit</em></h2>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Performance Marketing</div>
+      <ul class="skill-list">
+        <li>ROAS Optimization</li>
+        <li>CPA & CPM Reduction</li>
+        <li>Conversion Tracking</li>
+        <li>Full-Funnel Strategy</li>
+        <li>Budget Allocation</li>
+      </ul>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Audience & Targeting</div>
+      <ul class="skill-list">
+        <li>Custom & Lookalike Audiences</li>
+        <li>Behavioral Targeting</li>
+        <li>Remarketing Strategies</li>
+        <li>Gulf Market Insights</li>
+        <li>A/B Testing</li>
+      </ul>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Analytics & Reporting</div>
+      <ul class="skill-list">
+        <li>Google Analytics 4</li>
+        <li>Meta Pixel & Events</li>
+        <li>UTM Tracking</li>
+        <li>Data-Driven Insights</li>
+        <li>Client Reporting</li>
+      </ul>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Team Leadership</div>
+      <ul class="skill-list">
+        <li>Team Mentorship</li>
+        <li>Task Delegation</li>
+        <li>Performance Reviews</li>
+        <li>Training Sessions</li>
+        <li>Cross-team Coordination</li>
+      </ul>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Tools</div>
+      <ul class="skill-list">
+        <li>Meta Ads Manager</li>
+        <li>Google Ads</li>
+        <li>Google Sheets / Excel</li>
+        <li>Notion · Slack · Asana</li>
+        <li>Canva</li>
+      </ul>
+    </div>
+    <div class="skill-group fade-up">
+      <div class="skill-group-title">Languages</div>
+      <ul class="skill-list">
+        <li>Arabic — Native</li>
+        <li>English — Fluent (B2)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left fade-up">
+    <div class="section-tag">07 — Contact</div>
+    <h2 class="contact-heading">Let's<br>Work<br><em>Together</em></h2>
+  </div>
+  <div class="contact-right fade-up">
+    <p class="contact-subtitle">Got a brand you want to scale in the Gulf market? Let's talk strategy — first call is always free.</p>
+
+    <!-- PRIMARY CTA -->
+    <a href="mailto:haidyyadell26@gmail.com?subject=Strategy Call Request" style="display:block; background:var(--ink); color:var(--cream); text-decoration:none; padding:20px 32px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; font-weight:500; text-align:center; margin-bottom:24px; transition:opacity 0.3s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      Book a Free Strategy Call →
+    </a>
+
+    <div class="contact-links">
+      <a href="mailto:haidyyadell26@gmail.com" class="contact-link">
+        <div class="contact-link-label">
+          <span class="contact-link-type">Email</span>
+          haidyyadell26@gmail.com
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="tel:+201067975054" class="contact-link">
+        <div class="contact-link-label">
+          <span class="contact-link-type">Phone</span>
+          +20 106 797 5054
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+      <a href="http://linkedin.com/in/haydi" target="_blank" class="contact-link">
+        <div class="contact-link-label">
+          <span class="contact-link-type">LinkedIn</span>
+          linkedin.com/in/haydi
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Haidy Adel</span>
+  <span>Performance Media Buyer · Gulf Market</span>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.width = '56px';
+    ring.style.height = '56px';
+    ring.style.opacity = '0.3';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.width = '36px';
+    ring.style.height = '36px';
+    ring.style.opacity = '0.5';
+  });
+});
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
